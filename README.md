@@ -74,10 +74,10 @@ U 盘是专门为了折腾 WTG 买的，SanDisk CZ73 64GB。这个盘宣称写�
 比如说..
 
 ```shell
-C:\> lua PortableVM.lua E:\QEMU\disk.qcow2 qemu-system-i386 -hda %s .....
+C:\> lua PortableVM.lua E:\QEMU\disk.qcow2 qemu-system-i386 -hda %%s .....
 ```
 
-这里的 VM 启动命令中可以用 `%s` 代替以前的母盘路径，它会被自动替换为字盘路径。
+这里的 VM 启动命令中可以用 `%s` 代替以前的母盘路径，它会被自动替换为字盘路径。注意，Windows 下要用 `%%s` 而不是 `%s`。
 
 # 调试选项
 
