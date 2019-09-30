@@ -81,7 +81,7 @@ end
 
 print("VM process is end. Commiting to the original disk...")
 local function askForCommit() 
-	print("Would you like to commit the snapshot? The original disk will be changed. Make sure the last VM session exited currectly, otherwise your data may be broken.")
+	print("Would you like to commit the snapshot? The original disk will be changed. Make sure the last VM session exited correctly, otherwise your data may be broken.")
 	io.write("[C] Commit and delete (Default), [D] Discard the last session's data, [A] Abort: ")
 	local choice = mInput.readLine()
 	if choice == "D" or choice == "d" then
