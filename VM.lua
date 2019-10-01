@@ -10,7 +10,7 @@ function VMUtils.boot(command)
 end
 
 function VMUtils.commit(snap)
-	return mUtils.exec("qemu-img commit -p " .. snap)
+	return mUtils.exec("qemu-imga commit -p " .. snap)
 end
 
 function VMUtils.isSnapExist(snap)

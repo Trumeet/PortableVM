@@ -97,7 +97,7 @@ local function askForCommit()
 		os.exit(0)
 	else 
 		if mVM.commit(SNAP_PATH) ~= true then
-			io.stderr:write("Cannot commit to the disk.\n")
+			io.stderr:write("Cannot commit to the disk. Press any key to continue.\n")
             mInput.readLine()
 			os.exit(4)
 		else
