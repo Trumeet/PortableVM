@@ -11,7 +11,7 @@ BOOT_CMD = arg[2]
 SNAP_PATH = mUtils.getSnapPath()
 
 if DISK_PATH == nil or BOOT_CMD == nil then
-	io.stderr:write("Arguments are missing. Usage: PortableVM <QCOW2 disk absolute path> <VM boot command>\n")
+	io.stderr:write("Arguments are missing. Usage: PortableVM <The absolute path of the disk> <VM boot command>\n")
 	os.exit(1)
 	return
 end
