@@ -92,6 +92,7 @@ local function askForCommit()
 	else 
 		if mVM.commit(SNAP_PATH) ~= true then
 			io.stderr:write("Cannot commit to the disk.\n")
+            mInput.readLine()
 			os.exit(4)
 		else
 			os.remove(SNAP_PATH)
