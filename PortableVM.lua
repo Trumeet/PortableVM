@@ -27,13 +27,15 @@ end
 
 print("Snap file: " .. SNAP_PATH)
 
+SKIP_CREATE_SNAP = false
+
 if mVM.isSnapExist(SNAP_PATH) then
 	io.stderr:write("Snap file " .. SNAP_PATH .. " is exist.\n")
 	local backing = mVM.getDiskInfo(SNAP_PATH)["full-backing-filename"]
 	local valid = backing ~= nil and mUtils.fileExist(backing)
 	if valid == true then
 		print("The snap file is a valid snapshot, you may choose to commit it first, delete it, and create a new snapshot.")
-		io.write("[C] Commit and delete it, [D] Discard the snapshot, [A] Abort (Default): ")
+		io.write("[C] Commit and delete it, [D] Discard the snapshot, [U] Use the snap file instead, [A] Abort (Default): ")
 		local choice = mInput.readLine()
 		if choice == "C" or choice == "c" then
 			if mVM.commit(SNAP_PATH) == true then
@@ -45,6 +47,8 @@ if mVM.isSnapExist(SNAP_PATH) then
 		elseif choice == "D" or choice == "d" then
 			print("Warning: all contents of the snapshot will be deleted! This cannot be undone.")
 			os.remove(SNAP_PATH)
+        elseif choice == "U" or choice == "u" then
+            SKIP_CREATE_SNAP = true
 		else
 			os.exit(1)
 		end	
@@ -60,11 +64,13 @@ if mVM.isSnapExist(SNAP_PATH) then
 	end
 end
 
-print("Creating snap...")
-if mVM.createSnap(DISK_PATH, SNAP_PATH) ~= true then
-	io.stderr:write("Cannot create the snap disk.\n")
-	os.exit(2)
-	return
+if SKIP_CREATE_SNAP ~= true then
+    print("Creating snap...")
+    if mVM.createSnap(DISK_PATH, SNAP_PATH) ~= true then
+	    io.stderr:write("Cannot create the snap disk.\n")
+	    os.exit(2)
+	    return
+    end
 end
 
 print("Booting VM...")
