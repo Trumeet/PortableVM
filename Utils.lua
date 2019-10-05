@@ -3,7 +3,13 @@ function Utils.exec(command)
 	if os.getenv("DEBUG") == "1" then
 		print("(Debug) Execute " .. command .. " (Status only)")
 	end
-	return os.execute(command)
+	local result = os.execute(command)
+    if type(result) == "boolean" then
+        return result
+    -- For LuaJIT
+    elseif type(result) == "number" then
+        return result == 0
+    end
 end
 function Utils.exec2(command)
 	if os.getenv("DEBUG") == "1" then
