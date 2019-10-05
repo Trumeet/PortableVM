@@ -10,6 +10,10 @@ DISK_PATH = arg[1]
 BOOT_CMD = arg[2]
 SNAP_PATH = mUtils.getSnapPath()
 
+if os.getenv("SNAP_PATH") ~= nil then
+    SNAP_PATH = string.format(os.getenv("SNAP_PATH"), SNAP_PATH)
+end
+
 if DISK_PATH == nil or BOOT_CMD == nil then
 	io.stderr:write("Arguments are missing. Usage: PortableVM <The absolute path of the disk> <VM boot command>\n")
 	os.exit(1)

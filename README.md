@@ -83,6 +83,10 @@ C:\> lua PortableVM.lua E:\QEMU\disk.qcow2 qemu-system-i386 -hda %%s .....
 
 本项目会执行很多 Shell / CMD 程式，如果你想看清楚到底执行了甚么，可以设置 `DEBUG` 环境变量为 `1`。
 
+# 更多选项
+
+支持修改默认的子盘路径（默认是 `%USERPROFILE%\vm.format`）。只需要设置 `SNAP_PATH` 环境变量即可，支持用 `%s` 代替默认路径。
+
 # 实际测试
 
 家里电脑不精确测试结果是还不如直接写快（大雾
